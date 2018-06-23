@@ -1,5 +1,6 @@
 /* globals KonchatNotification */
 import s from 'underscore.string';
+import '../../imports/mood-graph/client/mood_graph.js';
 
 Blaze.registerHelper('pathFor', function(path, kw) {
 	return FlowRouter.path(path, kw.hash);
@@ -74,6 +75,17 @@ FlowRouter.route('/directory', {
 
 	action() {
 		BlazeLayout.render('main', {center: 'directory'});
+	},
+	triggersExit: [function() {
+		$('.main-content').addClass('rc-old');
+	}]
+});
+
+FlowRouter.route('/mood_graph', {
+	name: 'mood_graph',
+
+	action() {
+		BlazeLayout.render('main', {center: 'mood_graph'});
 	},
 	triggersExit: [function() {
 		$('.main-content').addClass('rc-old');
@@ -170,4 +182,3 @@ FlowRouter.notFound = {
 		BlazeLayout.render('pageNotFound');
 	}
 };
-

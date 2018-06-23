@@ -8,6 +8,8 @@ Meteor.publish('userData', function() {
 			name: 1,
 			username: 1,
 			status: 1,
+			mood: 1,
+			moodCount: 1,
 			statusDefault: 1,
 			statusConnection: 1,
 			avatarOrigin: 1,

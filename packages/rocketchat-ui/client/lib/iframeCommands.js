@@ -13,6 +13,10 @@ const commands = {
 		AccountBox.setStatus(data.status);
 	},
 
+	'set-user-mood'(data) {
+		AccountBox.setStatus(data.mood);
+	},
+
 	'call-custom-oauth-login'(data, event) {
 		const customOAuthCallback = (response) => {
 			event.source.postMessage({

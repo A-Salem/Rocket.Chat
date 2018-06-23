@@ -1,0 +1,6 @@
+enum UserMood {
+	HAPPY
+	SAD
+	UNCERTAIN
+	CONFUSED
+}

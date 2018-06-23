@@ -5,6 +5,13 @@
 				{{> avatar username=username}}
 				<div class="sidebar__header-status-bullet sidebar__header-status-bullet--{{status}}"></div>
 			</div>
+			<div class="mood">
+				<button class="sidebar__toolbar-button rc-tooltip rc-tooltip--down js-button">
+					<svg class="rc-icon sidebar__toolbar-button-icon sidebar__toolbar-button-icon--{{$or currentUser.mood 'smile'}}" aria-hidden="true">
+						<use xlink:href="#icon-{{$or currentUser.mood 'smile'}}"></use>
+					</svg>
+				</button>
+			</div>
 			<div class="sidebar__toolbar">
 				{{#each toolbarButtons}}
 					<button class="sidebar__toolbar-button rc-tooltip rc-tooltip--down js-button" aria-label="{{name}}">

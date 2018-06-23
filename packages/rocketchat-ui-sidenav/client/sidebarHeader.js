@@ -5,6 +5,12 @@ const setStatus = status => {
 	popover.close();
 };
 
+const setMood = mood => {
+	AccountBox.setMood(mood);
+	RocketChat.callbacks.run('userMoodManuallySet', mood);
+	popover.close();
+};
+
 const viewModeIcon = {
 	extended: 'th-list',
 	medium: 'list',
@@ -293,6 +299,71 @@ Template.sidebarHeader.events({
 												FlowRouter.go('home');
 												popover.close();
 											});
+										}
+									}
+								]
+							}
+						]
+					}
+				],
+				currentTarget: e.currentTarget,
+				offsetVertical: e.currentTarget.clientHeight + 10
+			};
+
+			popover.open(config);
+		}
+	},
+	'click .sidebar__header .mood'(e) {
+		// return console.log('herererer');
+		if (!(Meteor.userId() == null && RocketChat.settings.get('Accounts_AllowAnonymousRead'))) {
+			const user = Meteor.user();
+			const config = {
+				popoverClass: 'sidebar-header',
+				columns: [
+					{
+						groups: [
+							{
+								title: t('Mood'),
+								items: [
+									{
+										icon: 'happy',
+										name: t('happy'),
+										class: 'mood',
+										modifier: 'online',
+										action: () => setMood('happy')
+									},
+									{
+										icon: 'sad',
+										name: t('sad'),
+										modifier: 'away',
+										action: () => setMood('sad')
+									},
+									{
+										icon: 'uncertain',
+										name: t('uncertain'),
+										modifier: 'invisible',
+										action: () => setMood('uncertain')
+									},
+									{
+										icon: 'confused',
+										name: t('confused'),
+										modifier: 'busy',
+										action: () => setMood('confused')
+									}
+								]
+							},
+							{
+								items: [
+									{
+										icon: 'graph',
+										name: t('Mood_Graph'),
+										type: 'open',
+										id: 'mood',
+										action: () => {
+											// SideNav.setFlex('accountFlex');
+											// SideNav.openFlex();
+											FlowRouter.go('mood_graph');
+											popover.close();
 										}
 									}
 								]

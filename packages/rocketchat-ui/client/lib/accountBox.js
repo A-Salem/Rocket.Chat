@@ -6,6 +6,9 @@ this.AccountBox = (function() {
 	function setStatus(status) {
 		return Meteor.call('UserPresence:setDefaultStatus', status);
 	}
+	function setMood(mood) {
+		return Meteor.call('setUserMood', mood);
+	}
 	function open() {
 		if (SideNav.flexStatus()) {
 			SideNav.closeFlex();
@@ -83,6 +86,7 @@ this.AccountBox = (function() {
 	}
 	return {
 		setStatus,
+		setMood,
 		toggle,
 		open,
 		close,

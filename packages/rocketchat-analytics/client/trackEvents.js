@@ -135,6 +135,12 @@ if (!window._paq || window.ga) {
 		}
 	}, RocketChat.callbacks.priority.MEDIUM, 'analytics-user-status-manually-set');
 
+	RocketChat.callbacks.add('userMoodManuallySet', (mood) => {
+		if (RocketChat.settings.get('Analytics_features_users')) {
+			trackEvent('User', 'Mood Manually Changed', mood);
+		}
+	}, RocketChat.callbacks.priority.MEDIUM, 'analytics-user-mood-manually-set');
+
 	RocketChat.callbacks.add('userAvatarSet', (service) => {
 		if (RocketChat.settings.get('Analytics_features_users')) {
 			trackEvent('User', 'Avatar Changed', service);
